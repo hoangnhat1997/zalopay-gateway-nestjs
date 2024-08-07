@@ -11,9 +11,13 @@ export class AppService {
       key1: 'PcY4iZIKFCIdgZvA6ueMcMHHUbRLYjPL',
       key2: 'kLtgPl8HHhfvMuDHPwKfgfsY4Ydm9eIz',
       endpoint: 'https://sb-openapi.zalopay.vn/v2/create',
+      return_url: 'https://localhost/payments',
+      callback_url: 'https://localhost/api/v1/transaction/callback',
     };
 
-    const embed_data = {};
+    const embed_data = {
+      redirecturl: config.return_url,
+    };
 
     const items = [{}];
 
@@ -29,6 +33,7 @@ export class AppService {
       description: `Lazada - Payment for the order #${transID}`,
       bank_code: 'zalopayapp',
       mac: '',
+      callback_url: config.callback_url,
     };
 
     const data =
@@ -46,6 +51,7 @@ export class AppService {
       '|' +
       order.item;
     order.mac = this.createSecureHash(data, config.key1);
+    console.log(order);
 
     axios
       .post(config.endpoint, null, { params: order })
