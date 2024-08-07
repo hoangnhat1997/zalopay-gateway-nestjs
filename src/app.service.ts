@@ -24,7 +24,7 @@ export class AppService {
     const transID = Math.floor(Math.random() * 1000000);
     const order = {
       app_id: config.app_id,
-      app_trans_id: `${moment().format('YYMMDD')}_${transID}`, // translation missing: vi.docs.shared.sample_code.comments.app_trans_id
+      app_trans_id: `${moment().format('YYMMDD')}_${transID}`,
       app_user: 'user123',
       app_time: Date.now(), // miliseconds
       item: JSON.stringify(items),
